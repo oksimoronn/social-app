@@ -52,8 +52,8 @@
   <div class="form">
   <h1>Register new Account</h1>
 
-  <form action="{{route("news_store")}}" method="POST">
-    {{ csrfField() }}
+  <form action="{{route("auth.register")}}" method="POST">
+  
     <input type="text" name="username" placeholder="User Name">
     <input type="email" name="email" placeholder="Email">
     <input type="password" name="password" placeholder="Password">
@@ -61,7 +61,7 @@
     <button type="submit">Register</button>
   </form>
 
-  <h6>Or <a href="{{route("/news/login")}}">Login</a></h6>
+  <h6>Or <a href="{{route("/login")}}">Login</a></h6>
   </div>
 </body>
 </html>

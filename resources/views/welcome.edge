@@ -38,11 +38,15 @@
 </head>
 <body>
 
+  @if(auth.user)
+    <a href="{{route('auth.logout')}}">Logout</a>
+  @endif
+
   <main>
     <div class="mainContent">
       <h1>Welcome to Social Network</h1>
-      <h3><a href="{{route("/news/login")}}">Login</a> to start journey</h3>
-      <h6>or <a href="{{route("/news/create")}}">Register</a> new accuont</h6>
+      <h3><a href="{{route("/login")}}">Login</a> to start journey</h3>
+      <h6>or <a href="{{route("/register")}}">Register</a> new accuont</h6>
     </div>
   </main>
 </body>
