@@ -18,8 +18,17 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
+import Database from "@ioc:Adonis/Lucid/Database";
+import ArticlesController from "App/Controllers/Http/ArticlesController";
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+Route.get("/", async ({ view }) => {
+  return view.render("welcome");
+});
+
+Route.get("/news", "ArticlesController.view").as("news/view");
+
+Route.get("/news/create", "ArticlesController.create").as("news/create");
+Route.get("/news/login", "ArticlesController.login").as("news/login");
+
+Route.post("/news", "ArticlesController.store").as("news_store");

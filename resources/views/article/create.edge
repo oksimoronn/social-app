@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Create new post</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+    }
+    .form{
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+    .form h1{
+      padding-bottom: 3rem;
+    }
+    .form form{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+    .form form input{
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    h6 {
+      margin-top:1rem;
+    }
+    h6 a{
+      text-decoration: none;
+      color:color:rgb(34, 167, 200);
+    }
+    h6 a:hover{
+      color:brown;
+    }
+   </style>
+</head>
+<body>
+  <div class="form">
+  <h1>Register new Account</h1>
+
+  <form action="{{route("news_store")}}" method="POST">
+    {{ csrfField() }}
+    <input type="text" name="username" placeholder="User Name">
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
+    
+    <button type="submit">Register</button>
+  </form>
+
+  <h6>Or <a href="{{route("/news/login")}}">Login</a></h6>
+  </div>
+</body>
+</html>
