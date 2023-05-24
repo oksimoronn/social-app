@@ -16,6 +16,12 @@ export default class User extends BaseModel {
   public password: string;
 
   @column()
+  public provider: string;
+
+  @column()
+  public providerId: string;
+
+  @column()
   public rememberMeToken: string | null;
 
   @column.dateTime({ autoCreate: true })

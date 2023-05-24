@@ -27,11 +27,14 @@ Route.get("/", async ({ view }) => {
 Route.get("register", "AuthController.registerShow").as("auth.register.show");
 Route.post("register", "AuthController.register").as("auth.register");
 
-Route.get("login", "AuthController-loginShow").as("auth.login.show");
+Route.get("login", "AuthController.loginShow").as("auth.login.show");
 Route.post("login", "AuthController.login").as("auth.login");
 
 Route.get("logout", "AuthController.logout").as("auth.logout");
 
+Route.get("login/google", "SocialAuthController.redirect");
+Route.get("login/google/callback", "SocialAuthController.callback");
+/*
 Route.get("google/redirect", async ({ ally }) => {
   const google = ally.use("google");
   if (google.accessDenied()) {
@@ -46,4 +49,4 @@ Route.get("google/redirect", async ({ ally }) => {
     return google.getError();
   }
   const user = await google.user();
-});
+});*/
