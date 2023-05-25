@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap" rel="stylesheet">
+  <style>
+   *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+   }
+   .mainContent{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+   }
+
+   .mainContent a{
+      text-decoration: none;
+      color:rgb(34, 167, 200);
+   }
+   .mainContent a:hover{
+    color:brown;
+   }
+   .mainContent h1{
+      padding-bottom: 3rem;
+   }
+   .mainContent h3{
+      padding-bottom: 2rem;
+   }
+  </style>
+</head>
+<body>
+  <main>
+    @if(!auth.user)
+      
+      <div class="mainContent">
+        <h1>You need to <a href="{{route('auth.login')}}">Login</a> to your account</h1> 
+      </div>
+    @endif
+
+    @if(auth.user)
+
+    <a href="{{route('auth.logout')}}">Logout</a>
+
+      <div class="mainContent">
+        <h1>Welcome to Your Page</h1> 
+      </div>
+      @endif
+  </main>
+
+</body>
+</html>

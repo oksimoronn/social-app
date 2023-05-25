@@ -35,7 +35,7 @@ export default class AuthController {
 
     await auth.login(user);
 
-    return response.redirect("/");
+    return response.redirect("/posts");
   }
 
   public async login({
@@ -52,7 +52,7 @@ export default class AuthController {
       session.flash("form", "Your email, username or password is incorrect");
       return response.redirect().back();
     }
-    return response.redirect("/");
+    return response.redirect("/posts");
   }
 
   public async logout({ response, auth }: HttpContextContract) {
