@@ -19,23 +19,19 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-import Database from "@ioc:Adonis/Lucid/Database";
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
 });
-
-Route.get("posts", async ({ view }) => {
-  const articles = await Database.from("blog_posts").select("*");
-  return view.render("post.posts", { articles });
-});
-Route.post("posts", "AuthController.create").as("auth.create");
 
 Route.get("register", "AuthController.registerShow").as("auth.register.show");
 Route.post("register", "AuthController.register").as("auth.register");
 
 Route.get("login", "AuthController.loginShow").as("auth.login.show");
 Route.post("login", "AuthController.login").as("auth.login");
+
+Route.get("posts", "AuthController.postShow").as("auth.post.show");
+Route.post("posts", "AuthController.create").as("auth.create");
 
 Route.get("logout", "AuthController.logout").as("auth.logout");
 

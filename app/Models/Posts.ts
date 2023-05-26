@@ -1,5 +1,4 @@
 import { DateTime } from "luxon";
-import Hash from "@ioc:Adonis/Core/Hash";
 import { column, BaseModel } from "@ioc:Adonis/Lucid/Orm";
 
 export default class Posts extends BaseModel {

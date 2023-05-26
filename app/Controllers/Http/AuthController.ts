@@ -1,7 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Database from "@ioc:Adonis/Lucid/Database";
-import Posts from "App/Models/Posts";
 import User from "App/Models/User";
 
 export default class AuthController {
@@ -64,6 +63,11 @@ export default class AuthController {
 
   public async loginShow({ view }: HttpContextContract) {
     return view.render("auth/login");
+  }
+
+  public async postShow({ view }: HttpContextContract) {
+    const articles = await Database.from("blog_posts").select("*");
+    return view.render("post.posts", { articles });
   }
 
   public async create({ request, response }: HttpContextContract) {
