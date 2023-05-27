@@ -53,7 +53,8 @@
         <h1>Welcome to Your Page</h1> 
         <div>
           <form action="{{ route("auth.create") }}" method="POST">
-            <input type="text" name="msg" placeholder="Your message">
+            <input type="text" name="email" placeholder="Your email">
+            <input type="text" name="msg" placeholder="Your msg">
             <button type="submit">Post</button>
           </form>
         </div>

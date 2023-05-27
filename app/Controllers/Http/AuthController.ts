@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import Database from "@ioc:Adonis/Lucid/Database";
+import Post from "App/Models/Post";
 import User from "App/Models/User";
 
 export default class AuthController {
@@ -66,26 +67,23 @@ export default class AuthController {
   }
 
   public async postShow({ view }: HttpContextContract) {
-    const articles = await Database.from("blog_posts").select("*");
+    const articles = await Database.from("posts").select("*");
     return view.render("post.posts", { articles });
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const postSchema = schema.create({
-      blog: schema.string({ trim: true }, [
-        rules.unique({
-          table: "blog_posts",
-          column: "body",
-          caseInsensitive: false,
-        }),
-      ]),
-    });
+    const post = new Post();
 
-    const payload = await request.validate({ schema: postSchema });
-    await Database.table("blog_posts").insert({
-      ...payload,
-    });
+    //post.email = request.input("email");
+    //post.body = request.input("msg");
 
+    post.fill({
+      email: request.input("email"),
+      body: request.input("msg"),
+      userId: 1,
+      slug: "neki slug",
+    });
+    await post.save();
     return response.redirect().back();
   }
 }
