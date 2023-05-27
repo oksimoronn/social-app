@@ -34,6 +34,13 @@
    .mainContent h3{
       padding-bottom: 2rem;
    }
+   .card{
+    margin: 1rem;
+    padding: 0.3rem;
+    width: 30%;
+    border: 1px solid black;
+    box-shadow: 14px 16px 19px -4px rgba(0,0,0,0.47);
+   }
   </style>
 </head>
 <body>
@@ -59,7 +66,11 @@
           </form>
         </div>
         @each(article in articles)
-          <p>{{article.body}}</p>
+          <div class="card">
+            <p>{{article.body}}</p>
+            <button type="">Delete</button>
+            <button type="">Update</button>
+          </div>
         @endeach
         
       </div>
