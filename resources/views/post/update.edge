@@ -54,30 +54,18 @@
 
     @if(auth.user)
 
-    <a href="{{route('auth.logout')}}">Logout</a>
+    <a href="{{route('auth.post.show')}}">Back to posts</a>
 
       <div class="mainContent">
         <h1>Welcome to Your Page</h1> 
         <div>
-          <form action="{{ route("auth.create") }}" method="POST">
-            <input type="hidden" name="uid" value="{{auth.user.$attributes.id}}">
-            <input type="text" name="title" placeholder="Your title">
-            <textarea name="msg" placeholder="Your msg"></textarea>
+          <form action="{{ route("auth.update", [post.id]) }}?_method=PATCH" method="POST">
+            <input type="hidden" name="uid" value="{{post.id}}">
+            <input type="text" name="title" placeholder="Your title" value="{{post.email}}">
+            <textarea name="msg">{{post.body}}</textarea>
             <button type="submit">Post</button>
           </form>
         </div>
-        @each(post in posts)
-        
-          <div class="card">
-            <h3>{{post.email}}</h3>
-            <p>{{post.body}}</p>
-            <form action="{{ route("auth.destroy", [post.id])}}?_method=DELETE " method="POST">
-            <button type="submit">Delete</button>
-          </form>
-            <button type=""><a href="{{route('auth.update.view',[post.id])}}">Update</a></button>
-          </div>
-          
-        @endeach
         
       </div>
       @endif

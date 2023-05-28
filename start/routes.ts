@@ -34,6 +34,9 @@ Route.get("posts", "AuthController.postShow").as("auth.post.show");
 Route.post("posts", "AuthController.create").as("auth.create");
 Route.delete("posts/:id", "AuthController.destroy").as("auth.destroy");
 
+Route.get("posts/:id/view", "AuthController.updateView").as("auth.update.view");
+Route.patch("posts/:id", "AuthController.update").as("auth.update");
+
 Route.get("logout", "AuthController.logout").as("auth.logout");
 
 /*

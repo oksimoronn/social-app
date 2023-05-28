@@ -75,7 +75,7 @@ export default class AuthController {
     const post = new Post();
 
     post.fill({
-      email: request.input("email"),
+      email: request.input("title"),
       body: request.input("msg"),
       userId: request.input("uid"),
       slug: "neki slug",
@@ -88,5 +88,21 @@ export default class AuthController {
     await Database.from("posts").where("id", params.id).delete();
 
     return response.redirect().back();
+  }
+  public async updateView({ view, params }) {
+    const post = await Database.from("posts").where("id", params.id).first();
+    return view.render("post/update", { post });
+  }
+
+  public async update({ request, response, params }: HttpContextContract) {
+    await Database.from("posts")
+      .where("id", params.id)
+      .update({
+        email: request.input("title"),
+        body: request.input("msg"),
+        id: request.input("uid"),
+      });
+
+    return response.redirect().toRoute("auth.post.show");
   }
 }
