@@ -32,6 +32,7 @@ Route.post("login", "AuthController.login").as("auth.login");
 
 Route.get("posts", "AuthController.postShow").as("auth.post.show");
 Route.post("posts", "AuthController.create").as("auth.create");
+Route.delete("posts/:id", "AuthController.destroy").as("auth.destroy");
 
 Route.get("logout", "AuthController.logout").as("auth.logout");
 

@@ -67,23 +67,26 @@ export default class AuthController {
   }
 
   public async postShow({ view }: HttpContextContract) {
-    const articles = await Database.from("posts").select("*");
-    return view.render("post.posts", { articles });
+    const posts = await Database.from("posts").select("*");
+    return view.render("post.posts", { posts });
   }
 
   public async create({ request, response }: HttpContextContract) {
     const post = new Post();
 
-    //post.email = request.input("email");
-    //post.body = request.input("msg");
-
     post.fill({
       email: request.input("email"),
       body: request.input("msg"),
-      userId: 1,
+      userId: request.input("uid"),
       slug: "neki slug",
     });
     await post.save();
+    return response.redirect().back();
+  }
+
+  public async destroy({ params, response }: HttpContextContract) {
+    await Database.from("posts").where("id", params.id).delete();
+
     return response.redirect().back();
   }
 }

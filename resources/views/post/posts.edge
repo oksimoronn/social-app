@@ -60,21 +60,27 @@
         <h1>Welcome to Your Page</h1> 
         <div>
           <form action="{{ route("auth.create") }}" method="POST">
+            <input type="hidden" name="uid" value="{{auth.user.$attributes.id}}">
             <input type="text" name="email" placeholder="Your email">
             <input type="text" name="msg" placeholder="Your msg">
             <button type="submit">Post</button>
           </form>
         </div>
-        @each(article in articles)
+        @each(post in posts)
+        
           <div class="card">
-            <p>{{article.body}}</p>
-            <button type="">Delete</button>
+            <p>{{post.body}}</p>
+            <form action="{{ route("auth.destroy", [post.id])}}?_method=DELETE " method="POST">
+            <button type="submit">Delete</button>
+          </form>
             <button type="">Update</button>
           </div>
+          
         @endeach
         
       </div>
       @endif
+      
   </main>
 
 </body>
